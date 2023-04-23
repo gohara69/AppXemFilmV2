@@ -11,6 +11,8 @@ import java.util.List;
 public class MovieRepository {
     private static MovieRepository instance;
     private MovieApiClient movieApiClient;
+    private String query;
+    private int pageNumber;
     public static MovieRepository getInstance() {
         if(instance==null)
         {
@@ -30,6 +32,12 @@ public class MovieRepository {
 }
 
     public void searchMovieApi(String query, int pageNumber) {
-        movieApiClient.searchMovieApi(query, pageNumber);
+        this.query = query;
+        this.pageNumber = pageNumber;
+        movieApiClient.searchMovieApi(this.query, this.pageNumber);
+    }
+
+    public void searchNextPage(){
+        searchMovieApi(query, pageNumber + 1);
     }
 }

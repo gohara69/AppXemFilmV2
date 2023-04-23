@@ -1,6 +1,8 @@
 package com.example.appxemfilm;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,19 +38,30 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
-        recyclerView = findViewById(R.id.recyclerView);
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setUpSearchView();
+
+        recyclerView = findViewById(R.id.recyclerView);
+        movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         ConfigureRecylerView();
         ObserveAnyChange();
-        searchMovieApi("Fast",1);
     }
     private void ConfigureRecylerView(){
         movieRecylerAdapter = new MovieRecylerView(this);
         recyclerView.setAdapter(movieRecylerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Pagination
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if(!recyclerView.canScrollVertically(1)) {
+                    movieListViewModel.searchNextPage();
+                }
+            }
+        });
     }
     private void ObserveAnyChange()
     {
@@ -65,81 +78,21 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
         });
     }
 
-    private void searchMovieApi(String query, int pageNumber) {
-        movieListViewModel.searchMovieApi(query, pageNumber);
-    }
-
-    private void GetRetrofitResponse()
-    {
-        //#7
-        //Test API Search Response
-        //Kết thúc phần 7
-        Servicey service = new Servicey();
-        MovieApi movieApi = service.getMovieApi();
-
-        Call<MovieSearchResponse> responseCall = movieApi
-                 .searchMovie(
-                        Credentials.API_KEY,
-                        "Action",
-                         1
+    private void setUpSearchView(){
+        final SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                movieListViewModel.searchMovieApi(
+                        query,
+                        1
                 );
-
-        responseCall.enqueue(new Callback<MovieSearchResponse>() {
-            @Override
-            public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
-                if(response.code() == 200){
-                    Log.v(  "Tag", "The response: " + response.body().toString());
-                    List<MovieModel> movies = new ArrayList<>(response.body().getMovies());
-                    for(MovieModel movie: movies){
-                        Log.v(  "Tag", "The release date : " + movie.getRelease_date());
-                    }
-                } else {
-                    try {
-                        Log.v("Tag", "Error: " + response.errorBody().toString());
-                    } catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }
+                return false;
             }
 
             @Override
-            public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
-
-            }
-        });
-    }
-    private void GetRetrofitResponseAccordingToID()
-    {
-        //#8
-        //Test API Search Response
-        //Kết thúc phần 8
-        Servicey service = new Servicey();
-        MovieApi movieApi = service.getMovieApi();
-
-        Call<MovieModel> responseCall = movieApi
-                .getMovie(
-                        343611,
-                        Credentials.API_KEY
-                );
-
-        responseCall.enqueue(new Callback<MovieModel>() {
-            @Override
-            public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
-                if(response.code() == 200){
-                    MovieModel movie = response.body();
-                    Log.v(  "Tag", "The release date : " + movie.getTitle());
-                } else {
-                    try {
-                        Log.v("Tag", "Error: " + response.errorBody().toString());
-                    } catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MovieModel> call, Throwable t) {
-
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
     }

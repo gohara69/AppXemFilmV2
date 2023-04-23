@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppXemFilm"
+        android:theme="@style/Theme.Material3.Light.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
