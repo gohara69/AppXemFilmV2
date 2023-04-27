@@ -11,24 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.content.Intent;
 
 import com.example.appxemfilm.adapters.MovieRecylerView;
 import com.example.appxemfilm.adapters.OnMovieListener;
 import com.example.appxemfilm.model.MovieModel;
-import com.example.appxemfilm.request.Servicey;
-import com.example.appxemfilm.response.MovieSearchResponse;
-import com.example.appxemfilm.utils.Credentials;
-import com.example.appxemfilm.utils.MovieApi;
+import com.example.appxemfilm.viewmodels.MovieDetail;
 import com.example.appxemfilm.viewmodels.MovieListViewModel;
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements OnMovieListener {
     private RecyclerView recyclerView;
@@ -99,7 +89,9 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
 
     @Override
     public void onMovieClick(int position) {
-        Toast.makeText(this, "The position: " + position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MovieDetail.class);
+        intent.putExtra("movie", movieRecylerAdapter.getSelectedMovie(position));
+        startActivity(intent);
     }
 
     @Override

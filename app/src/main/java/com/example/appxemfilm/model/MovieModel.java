@@ -14,13 +14,13 @@ public class MovieModel implements Parcelable {
     private String release_date;
     private int movie_id;
     private float vote_average;
+    @SerializedName("overview")
     private String movie_overview;
     private String original_language;
+    private String original_title;
     //Constructor
 
-
-    public MovieModel(String title, String poster_path, String release_date, int movie_id,
-                      float vote_average, String movie_overview, String original_language) {
+    public MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String movie_overview, String original_language, String original_title) {
         this.title = title;
         this.poster_path = poster_path;
         this.release_date = release_date;
@@ -28,7 +28,10 @@ public class MovieModel implements Parcelable {
         this.vote_average = vote_average;
         this.movie_overview = movie_overview;
         this.original_language = original_language;
+        this.original_title = original_title;
     }
+
+
     // Getters
 
     protected MovieModel(Parcel in) {
@@ -39,6 +42,7 @@ public class MovieModel implements Parcelable {
         vote_average = in.readFloat();
         movie_overview = in.readString();
         original_language = in.readString();
+        original_title = in.readString();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -109,6 +113,14 @@ public class MovieModel implements Parcelable {
         return original_language;
     }
 
+    public String getOriginal_title() {
+        return original_title;
+    }
+
+    public void setOriginal_title(String original_title) {
+        this.original_title = original_title;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -125,6 +137,7 @@ public class MovieModel implements Parcelable {
         dest.writeFloat(vote_average);
         dest.writeString(movie_overview);
         dest.writeString(original_language);
+        dest.writeString(original_title);
     }
 
     @Override

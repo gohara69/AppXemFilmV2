@@ -1,5 +1,7 @@
 package com.example.appxemfilm.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -38,6 +40,6 @@ public class MovieRepository {
     }
 
     public void searchNextPage(){
-        searchMovieApi(query, pageNumber + 1);
+        searchMovieApi(this.query, this.pageNumber + 1);
     }
 }
