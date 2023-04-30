@@ -14,12 +14,14 @@ public interface MovieApi {
     Call<MovieSearchResponse> searchMovie(
             @Query("api_key") String key,
             @Query("query") String query,
-            @Query("page") int pageNumber
+            @Query("page") int pageNumber,
+            @Query("language") String language
     );
 
     @GET("movie/{movie_id}?")
     Call<MovieModel> getMovie(
             @Path("movie_id") int movie_id,
-            @Query("api_key") String key
+            @Query("api_key") String key,
+            @Query("language") String language
     );
 }

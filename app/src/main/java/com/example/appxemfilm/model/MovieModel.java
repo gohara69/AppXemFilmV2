@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class MovieModel implements Parcelable {
     //model class for our movies
     private String title;

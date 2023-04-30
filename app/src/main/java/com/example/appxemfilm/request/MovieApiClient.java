@@ -104,7 +104,8 @@ public class MovieApiClient {
             return servicey.getMovieApi().searchMovie(
                     Credentials.API_KEY,
                     query,
-                    pageNumber
+                    pageNumber,
+                    "vi-VN"
             );
         }
 
