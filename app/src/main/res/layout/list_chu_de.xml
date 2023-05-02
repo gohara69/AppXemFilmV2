@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:focusable="true"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:text="button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chu_de_btn"
+
+        android:background="@drawable/custom_button"/>
+</androidx.cardview.widget.CardView>

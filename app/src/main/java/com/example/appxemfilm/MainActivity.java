@@ -9,21 +9,36 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.content.Intent;
 
 import com.example.appxemfilm.adapters.MovieRecylerView;
 import com.example.appxemfilm.adapters.OnMovieListener;
+import com.example.appxemfilm.model.ChuDe;
 import com.example.appxemfilm.model.MovieModel;
+import com.example.appxemfilm.request.Servicey;
+import com.example.appxemfilm.response.GenreResponse;
+import com.example.appxemfilm.utils.Credentials;
+import com.example.appxemfilm.utils.GenreApi;
 import com.example.appxemfilm.viewmodels.MovieDetail;
 import com.example.appxemfilm.viewmodels.MovieListViewModel;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements OnMovieListener {
     private RecyclerView recyclerView;
     private MovieRecylerView movieRecylerAdapter;
     private MovieListViewModel movieListViewModel;
+    SQLiteDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +52,15 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
         movieListViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         ConfigureRecylerView();
         ObserveAnyChange();
+
+        database = openOrCreateDatabase("AppFilm.db",MODE_PRIVATE, null);
+        try{
+            String sql = "CREATE TABLE CHUDE(id INTEGER primary key, name TEXT)";
+            database.execSQL(sql);
+        } catch (Exception e){
+            Log.v("Error: ", "Table đã tồn tại");
+        }
+        getAllGenre();
     }
     private void ConfigureRecylerView(){
         movieRecylerAdapter = new MovieRecylerView(this);
@@ -60,10 +84,44 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
             public void onChanged(List<MovieModel> movieModels) {
                 if(movieModels != null){
                     for(MovieModel movieModel: movieModels) {
-                        Log.v("Tag", "onChanged: " + movieModel.getTitle());
                         movieRecylerAdapter.setmMovies(movieModels);
                     }
                 }
+            }
+        });
+    }
+
+    public void getAllGenre(){
+        Servicey servicey = new Servicey();
+        GenreApi genreApi = servicey.getGenreApi();
+        Call<GenreResponse> responseCall = genreApi.getGenres(
+                Credentials.API_KEY,
+                "vi-VN"
+        );
+        responseCall.enqueue(new Callback<GenreResponse>() {
+            @Override
+            public void onResponse(Call<GenreResponse> call, Response<GenreResponse> response) {
+                if(response.code() == 200){
+                    Log.v("Tag: ", "The response " + response.body().toString());
+                    List<ChuDe> listChuDe = new ArrayList<>(response.body().getChuDes());
+                    for(ChuDe cd: listChuDe){
+                        ContentValues chuDeValue = new ContentValues();
+                        chuDeValue.put("id",cd.getId());
+                        chuDeValue.put("name", cd.getName());
+                        if(database.insert("CHUDE", null, chuDeValue) == -1){
+                            Log.v("Error: ", "Lỗi khi insert vào bảng");
+                        } else {
+                            Log.v("Tag: ", "insert thành công");
+                        }
+                    }
+                } else {
+                    Log.v("Tag: ", "Error " + response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GenreResponse> call, Throwable t) {
+
             }
         });
     }

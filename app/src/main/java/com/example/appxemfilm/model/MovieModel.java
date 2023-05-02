@@ -20,9 +20,10 @@ public class MovieModel implements Parcelable {
     private String movie_overview;
     private String original_language;
     private String original_title;
-    //Constructor
+    private int[] genre_ids;
 
-    public MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String movie_overview, String original_language, String original_title) {
+    //Constructor
+    public MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String movie_overview, String original_language, String original_title, int[] genre_ids) {
         this.title = title;
         this.poster_path = poster_path;
         this.release_date = release_date;
@@ -31,11 +32,10 @@ public class MovieModel implements Parcelable {
         this.movie_overview = movie_overview;
         this.original_language = original_language;
         this.original_title = original_title;
+        this.genre_ids = genre_ids;
     }
 
-
     // Getters
-
     protected MovieModel(Parcel in) {
         title = in.readString();
         poster_path = in.readString();
@@ -45,6 +45,7 @@ public class MovieModel implements Parcelable {
         movie_overview = in.readString();
         original_language = in.readString();
         original_title = in.readString();
+        genre_ids = in.createIntArray();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -58,6 +59,14 @@ public class MovieModel implements Parcelable {
             return new MovieModel[size];
         }
     };
+
+    public int[] getGenre_ids() {
+        return genre_ids;
+    }
+
+    public void setGenre_ids(int[] genre_ids) {
+        this.genre_ids = genre_ids;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -140,6 +149,7 @@ public class MovieModel implements Parcelable {
         dest.writeString(movie_overview);
         dest.writeString(original_language);
         dest.writeString(original_title);
+        dest.writeIntArray(genre_ids);
     }
 
     @Override
