@@ -24,4 +24,12 @@ public interface MovieApi {
             @Query("api_key") String key,
             @Query("language") String language
     );
+
+    @GET("discover/movie")
+    Call<MovieSearchResponse> getMoviesByGenresId(
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("page") int pageNumber,
+            @Query("with_genres") String withGenres
+    );
 }

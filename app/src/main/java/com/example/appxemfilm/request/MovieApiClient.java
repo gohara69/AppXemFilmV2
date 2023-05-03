@@ -43,6 +43,7 @@ public class MovieApiClient {
         return mMovies;
     }
 
+
     public void searchMovieApi(String query, int pageNumber)
     {
         if(retrieveMoviesRunnable != null) {

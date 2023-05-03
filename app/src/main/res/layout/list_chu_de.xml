@@ -3,13 +3,16 @@
     android:layout_width="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:focusable="true"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp">
 
     <Button
         android:text="button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chu_de_btn"
-
-        android:background="@drawable/custom_button"/>
+        android:textColor="#51af4f"
+        android:background="@drawable/custom_button"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"/>
 </androidx.cardview.widget.CardView>

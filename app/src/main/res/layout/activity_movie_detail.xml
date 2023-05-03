@@ -47,7 +47,7 @@
             app:layout_constraintTop_toTopOf="@id/movie_constraint_background"
             app:layout_constraintLeft_toLeftOf="parent"
             android:text="One Piece - Đảo Hải Tặc"
-            android:textSize="20dp"
+            android:textSize="24dp"
             android:textColor="@color/black"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -57,6 +57,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:textSize="15sp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/recyclerView_chu_de"
             />
 

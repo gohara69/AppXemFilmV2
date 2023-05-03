@@ -50,8 +50,7 @@ public class MovieDetail extends AppCompatActivity {
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MovieDetail.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
@@ -81,9 +80,5 @@ public class MovieDetail extends AppCompatActivity {
                     .load("https://image.tmdb.org/t/p/w500/" + movieModel.getPoster_path())
                     .into(imageView);
         }
-    }
-
-    public void docTableChuDe(){
-
     }
 }

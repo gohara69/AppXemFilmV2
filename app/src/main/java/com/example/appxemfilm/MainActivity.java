@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
             @Override
             public void onResponse(Call<GenreResponse> call, Response<GenreResponse> response) {
                 if(response.code() == 200){
-                    Log.v("Tag: ", "The response " + response.body().toString());
                     List<ChuDe> listChuDe = new ArrayList<>(response.body().getChuDes());
                     for(ChuDe cd: listChuDe){
                         ContentValues chuDeValue = new ContentValues();

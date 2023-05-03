@@ -15,6 +15,7 @@ public class MovieRepository {
     private MovieApiClient movieApiClient;
     private String query;
     private int pageNumber;
+    private String genresId;
     public static MovieRepository getInstance() {
         if(instance==null)
         {
@@ -29,9 +30,9 @@ public class MovieRepository {
         movieApiClient= MovieApiClient.getInstance();
     }
     public LiveData<List<MovieModel>> getMovies()
-{
-    return movieApiClient.getMovies();
-}
+    {
+        return movieApiClient.getMovies();
+    }
 
     public void searchMovieApi(String query, int pageNumber) {
         this.query = query;
