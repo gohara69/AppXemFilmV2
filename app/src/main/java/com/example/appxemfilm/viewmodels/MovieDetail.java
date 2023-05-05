@@ -85,7 +85,15 @@ public class MovieDetail extends AppCompatActivity {
     private void getDataFromIntent() {
         belongs_to_collection belong = new belongs_to_collection();
         if(getIntent().hasExtra("belong")){
-            belong = (belongs_to_collection) getIntent().getSerializableExtra("belong");
+            belongs_to_collection temp = (belongs_to_collection) getIntent().getSerializableExtra("belong");
+            if(temp != null){
+                if(temp.getBackdrop_path() != null && temp.getBackdrop_path() != ""){
+                    belong.setBackdrop_path(temp.getBackdrop_path());
+                }
+                if(temp.getPoster_path() != null && temp.getPoster_path() != ""){
+                    belong.setPoster_path(temp.getPoster_path());
+                }
+            }
         }
         if(getIntent().hasExtra("movie")) {
             setDataToView();
@@ -113,15 +121,18 @@ public class MovieDetail extends AppCompatActivity {
 
     public void setDataToRecyclerViewFilmImage(MovieModel movieModel, belongs_to_collection belong){
         List<String> listImage = new ArrayList<>();
-        if(movieModel.getBackdrop_path() != ""){
+        if(movieModel.getBackdrop_path() != "" && movieModel.getBackdrop_path() != null){
             listImage.add(movieModel.getBackdrop_path());
         }
-        if(movieModel.getPoster_path() != ""){
+        if(movieModel.getPoster_path() != "" && movieModel.getPoster_path() != null){
             listImage.add(movieModel.getPoster_path());
         }
-
-        listImage.add(belong.getPoster_path());
-        listImage.add(belong.getBackdrop_path());
+        if(belong.getPoster_path() != null && belong.getPoster_path() != ""){
+            listImage.add(belong.getPoster_path());
+        }
+        if(belong.getBackdrop_path() != null && belong.getBackdrop_path() != ""){
+            listImage.add(belong.getBackdrop_path());
+        }
         FilmImageRecyclerView adapter = new FilmImageRecyclerView(this, listImage);
         recyclerViewFilmImage.setAdapter(adapter);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -134,13 +145,22 @@ public class MovieDetail extends AppCompatActivity {
         text_view_status.setText(movieModel.getStatus());
         text_view_duriation.setText(movieModel.getRuntime() + " phút");
         text_view_release_date.setText(movieModel.getRelease_date());
-        text_view_budget.setText(movieModel.getBudget() + "$");
+        if(movieModel.getBudget() != 0){
+            text_view_budget.setText(movieModel.getBudget() + "$");
+        } else {
+            text_view_budget.setText("Không có số liệu");
+        }
         if(movieModel.getRevenue() != 0){
             text_view_income.setText(movieModel.getRevenue() + "$");
         } else {
-            text_view_income.setText(movieModel.getBudget() * 120 / 100 + "$");
+            text_view_income.setText("Không có số liệu");
         }
-        text_view_overview.setText(movieModel.getMovie_overview());
+
+        if(movieModel.getMovie_overview().length() > 0){
+            text_view_overview.setText(movieModel.getMovie_overview());
+        } else {
+            text_view_overview.setText("Không có thông tin");
+        }
         Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500/" + movieModel.getPoster_path())
                 .into(imageView);

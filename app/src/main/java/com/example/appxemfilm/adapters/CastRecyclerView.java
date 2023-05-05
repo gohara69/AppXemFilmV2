@@ -55,7 +55,9 @@ public class CastRecyclerView extends RecyclerView.Adapter<CastRecyclerView.Cast
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v("Tag", cast.getCast_id() + "");
+                Intent intent = new Intent(context, CastDetail.class);
+                intent.putExtra("cast",cast);
+                context.startActivity(intent);
             }
         });
     }

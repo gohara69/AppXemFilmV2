@@ -38,7 +38,7 @@ public class FilmImageRecyclerView extends RecyclerView.Adapter<FilmImageRecycle
     @Override
     public void onBindViewHolder(@NonNull FilmImageHolder holder, int position) {
         String imageSource = listImageSource.get(position);
-        if(imageSource == null){
+        if(imageSource == null || imageSource == ""){
             return;
         }
         Glide.with(context)

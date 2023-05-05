@@ -1,9 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".viewmodels.CastDetail">
+    android:layout_height="wrap_content"
+    app:layout_editor_absoluteX="1dp"
+    app:layout_editor_absoluteY="1dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".viewmodels.CastDetail">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/header_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@id/header_wrapper"
+            app:layout_constraintLeft_toLeftOf="@id/header_wrapper"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24_black"/>
+
+        <TextView
+            app:layout_constraintTop_toTopOf="@id/header_wrapper"
+            app:layout_constraintLeft_toLeftOf="@id/header_wrapper"
+            app:layout_constraintRight_toRightOf="@id/header_wrapper"
+            android:layout_marginTop="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="header"
+            android:textColor="@color/black"
+            android:id="@+id/text_view_header"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:layout_constraintTop_toBottomOf="@id/header_wrapper"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:scaleType="fitXY"
+            android:id="@+id/image_cast"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/image_cast"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:orientation="vertical"
+            android:background="@drawable/gray_background"
+            android:layout_marginTop="-15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin"
+                android:layout_marginRight="5dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/while_background"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+                <RelativeLayout
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Giới tính"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Giới tính"
+                                android:textSize="18sp"
+                                android:textColor="#000"
+                                android:id="@+id/text_view_sex"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#51af4f"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ngày sinh"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Giới tính"
+                                android:textSize="18sp"
+                                android:textColor="#000"
+                                android:id="@+id/text_view_ngay_sinh"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#51af4f"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nghề nghiệp"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Giới tính"
+                                android:textSize="18sp"
+                                android:textColor="#000"
+                                android:id="@+id/text_view_nghe_nghiep"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#51af4f"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nơi sinh"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Giới tính"
+                                android:textSize="18sp"
+                                android:textColor="#000"
+                                android:id="@+id/text_view_noi_sinh"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#51af4f"/>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hình ảnh"
+                android:layout_marginRight="5dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/recycler_view_hinh_anh"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Các phim đã đóng"
+                android:layout_marginRight="5dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/recycler_view_phim_da_dong"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

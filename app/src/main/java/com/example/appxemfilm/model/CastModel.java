@@ -1,19 +1,22 @@
 package com.example.appxemfilm.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class CastModel implements Serializable {
+public class CastModel implements Parcelable {
+    @SerializedName("id")
     private int id;
     private String name;
     private String profile_path;
     private int cast_id;
     private String character;
-    @SerializedName("also_known_as")
-    private String also_known_as;
-    @SerializedName("biography")
-    private String biography;
     @SerializedName("birthday")
     private String birthday;
     @SerializedName("gender")
@@ -24,8 +27,34 @@ public class CastModel implements Serializable {
     private String place_of_birth;
     @SerializedName("homepage")
     private String homepage;
+
     public CastModel() {
     }
+
+    protected CastModel(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        profile_path = in.readString();
+        cast_id = in.readInt();
+        character = in.readString();
+        birthday = in.readString();
+        gender = in.readInt();
+        known_for_department = in.readString();
+        place_of_birth = in.readString();
+        homepage = in.readString();
+    }
+
+    public static final Creator<CastModel> CREATOR = new Creator<CastModel>() {
+        @Override
+        public CastModel createFromParcel(Parcel in) {
+            return new CastModel(in);
+        }
+
+        @Override
+        public CastModel[] newArray(int size) {
+            return new CastModel[size];
+        }
+    };
 
     public void setId(int id) {
         this.id = id;
@@ -45,22 +74,6 @@ public class CastModel implements Serializable {
 
     public void setCharacter(String character) {
         this.character = character;
-    }
-
-    public String getAlso_known_as() {
-        return also_known_as;
-    }
-
-    public void setAlso_known_as(String also_known_as) {
-        this.also_known_as = also_known_as;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
     }
 
     public String getBirthday() {
@@ -129,5 +142,24 @@ public class CastModel implements Serializable {
 
     public String getCharacter() {
         return character;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(profile_path);
+        parcel.writeInt(cast_id);
+        parcel.writeString(character);
+        parcel.writeString(birthday);
+        parcel.writeInt(gender);
+        parcel.writeString(known_for_department);
+        parcel.writeString(place_of_birth);
+        parcel.writeString(homepage);
     }
 }
