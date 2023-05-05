@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,8 +23,11 @@ import com.example.appxemfilm.model.ChuDe;
 import com.example.appxemfilm.model.MovieModel;
 import com.example.appxemfilm.request.Servicey;
 import com.example.appxemfilm.response.GenreResponse;
+import com.example.appxemfilm.response.MovieResponse;
+import com.example.appxemfilm.response.MovieSearchResponse;
 import com.example.appxemfilm.utils.Credentials;
 import com.example.appxemfilm.utils.GenreApi;
+import com.example.appxemfilm.utils.MovieApi;
 import com.example.appxemfilm.viewmodels.MovieDetail;
 import com.example.appxemfilm.viewmodels.MovieListViewModel;
 
@@ -146,9 +150,36 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
 
     @Override
     public void onMovieClick(int position) {
-        Intent intent = new Intent(this, MovieDetail.class);
-        intent.putExtra("movie", movieRecylerAdapter.getSelectedMovie(position));
-        startActivity(intent);
+        Servicey servicey = new Servicey();
+        MovieApi movieApi = servicey.getMovieApi();
+        MovieModel movieModel = movieRecylerAdapter.getSelectedMovie(position);
+        Call<MovieModel> responseCall = movieApi.getMovie(
+                movieModel.getMovie_id(),
+                Credentials.API_KEY,
+                "vi-VN"
+        );
+
+        responseCall.enqueue(new Callback<MovieModel>() {
+            @Override
+            public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
+                if(response.code() == 200){
+                    movieModel.setBudget(response.body().getBudget());
+                    movieModel.setRevenue(response.body().getRevenue());
+                    movieModel.setRuntime(response.body().getRuntime());
+                    movieModel.setStatus(response.body().getStatus());
+                    movieModel.setBackdrop_path(response.body().getBackdrop_path());
+                    Intent intent = new Intent(MainActivity.this, MovieDetail.class);
+                    intent.putExtra("movie", movieModel);
+                    intent.putExtra("belong", response.body().getBelongs_to_collection());
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieModel> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

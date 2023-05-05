@@ -15,11 +15,17 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".viewmodels.CastDetail"
+            android:exported="false" />
+        <activity
+            android:name=".viewmodels.FullImageAcitivity"
+            android:exported="false" />
+        <activity
             android:name=".viewmodels.MoviesByCategory"
             android:exported="false" />
         <activity
             android:name=".viewmodels.MovieDetail"
-            android:exported="true"></activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

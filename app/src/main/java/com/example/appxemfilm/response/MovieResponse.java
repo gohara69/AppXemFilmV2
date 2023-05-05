@@ -14,11 +14,4 @@ public class MovieResponse {
     public MovieModel getMovie() {
         return movie;
     }
-
-    @Override
-    public String toString() {
-        return "MovieResponse{" +
-                "movie=" + movie +
-                '}';
-    }
 }

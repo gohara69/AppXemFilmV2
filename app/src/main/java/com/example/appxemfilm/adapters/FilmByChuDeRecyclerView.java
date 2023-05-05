@@ -14,19 +14,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.appxemfilm.MainActivity;
 import com.example.appxemfilm.R;
 import com.example.appxemfilm.model.ChuDe;
 import com.example.appxemfilm.model.MovieModel;
+import com.example.appxemfilm.request.Servicey;
+import com.example.appxemfilm.utils.Credentials;
+import com.example.appxemfilm.utils.MovieApi;
 import com.example.appxemfilm.viewmodels.MovieDetail;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class FilmByChuDeRecyclerView extends RecyclerView.Adapter<FilmByChuDeRecyclerView.FilmByChuDeViewHolder> {
     Context context;
     List<MovieModel> listMovie;
-    private OnMovieListener onMovieListener;
 
     public FilmByChuDeRecyclerView(Context context, ArrayList<MovieModel> listMovie) {
         this.context = context;
@@ -58,9 +65,35 @@ public class FilmByChuDeRecyclerView extends RecyclerView.Adapter<FilmByChuDeRec
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MovieDetail.class);
-                intent.putExtra("movie", movie);
-                context.startActivity(intent);
+                Servicey servicey = new Servicey();
+                MovieApi movieApi = servicey.getMovieApi();
+                Call<MovieModel> responseCall = movieApi.getMovie(
+                        movie.getMovie_id(),
+                        Credentials.API_KEY,
+                        "vi-VN"
+                );
+
+                responseCall.enqueue(new Callback<MovieModel>() {
+                    @Override
+                    public void onResponse(Call<MovieModel> call, Response<MovieModel> response) {
+                        if(response.code() == 200){
+                            movie.setBudget(response.body().getBudget());
+                            movie.setRevenue(response.body().getRevenue());
+                            movie.setRuntime(response.body().getRuntime());
+                            movie.setStatus(response.body().getStatus());
+                            movie.setBackdrop_path(response.body().getBackdrop_path());
+                            Intent intent = new Intent(context, MovieDetail.class);
+                            intent.putExtra("movie", movie);
+                            intent.putExtra("belong", response.body().getBelongs_to_collection());
+                            context.startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MovieModel> call, Throwable t) {
+
+                    }
+                });
             }
         });
     }
@@ -87,14 +120,5 @@ public class FilmByChuDeRecyclerView extends RecyclerView.Adapter<FilmByChuDeRec
     public void setmMovies(List<MovieModel> mMovies) {
         this.listMovie = mMovies;
         notifyDataSetChanged();
-    }
-
-    public MovieModel getSelectedMovie(int position) {
-        if(listMovie != null) {
-            if(listMovie.size() > 0){
-                return listMovie.get(position);
-            }
-        }
-        return null;
     }
 }

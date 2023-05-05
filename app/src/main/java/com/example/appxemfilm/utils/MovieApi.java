@@ -1,6 +1,7 @@
 package com.example.appxemfilm.utils;
 
 import com.example.appxemfilm.model.MovieModel;
+import com.example.appxemfilm.response.MovieResponse;
 import com.example.appxemfilm.response.MovieSearchResponse;
 
 import retrofit2.Call;
@@ -18,7 +19,7 @@ public interface MovieApi {
             @Query("language") String language
     );
 
-    @GET("movie/{movie_id}?")
+    @GET("movie/{movie_id}")
     Call<MovieModel> getMovie(
             @Path("movie_id") int movie_id,
             @Query("api_key") String key,
