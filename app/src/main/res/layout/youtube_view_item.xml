@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/custome_image_view">
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:id="@+id/video_player"
+        app:autoPlay="false"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đây là video"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:id="@+id/text_view_tieu_de"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

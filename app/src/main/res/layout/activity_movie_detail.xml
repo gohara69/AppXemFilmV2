@@ -238,7 +238,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:id="@+id/linear_cast_list">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -252,6 +253,102 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/recycler_cast_list"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                app:layout_constraintTop_toBottomOf="@id/linear_cast_list"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/linear_videos">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Video"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_video_list"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                app:layout_constraintTop_toBottomOf="@id/linear_videos"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/linear_keyword">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Keywords"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_keyword"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                app:layout_constraintTop_toBottomOf="@id/linear_keyword"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/linear_khuyen_nghi">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khuyến nghị"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_khuyen_nghi"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                app:layout_constraintTop_toBottomOf="@id/linear_khuyen_nghi"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tương tự"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_tuong_tu"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

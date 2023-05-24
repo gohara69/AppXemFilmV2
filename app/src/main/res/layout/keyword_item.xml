@@ -13,9 +13,7 @@
         android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chu_de_btn"
-        android:textColor="@color/white"
-        android:background="@drawable/custom_button"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"/>
+        android:id="@+id/text_view_keyword"
+        android:textColor="#fff"
+        android:background="@drawable/custom_button"/>
 </androidx.cardview.widget.CardView>
