@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_home"
+        android:title="Trang chủ"
+        app:showAsAction="always"
+        android:icon="@drawable/baseline_home_24"/>
+
+    <item
+        android:id="@+id/item_chu_de"
+        android:title="Chủ đề"
+        android:icon="@drawable/baseline_category_24"
+        />
+
+    <item
+        android:id="@+id/item_hot"
+        android:title="Phim hot"
+        android:icon="@drawable/baseline_whatshot_24"
+        />
+
+    <item
+        android:id="@+id/item_near"
+        android:title="Phim sắp chiếu"
+        android:icon="@drawable/baseline_upcoming_24"
+        />
+
+    <item
+        android:id="@+id/item_user"
+        android:title="Tài khoản"
+        android:icon="@drawable/baseline_account_circle_24"
+        />
+
+    <item
+        android:id="@+id/item_about_us"
+        android:title="Về chúng tôi"
+        android:icon="@drawable/baseline_info_24"
+        />
+
+    <item
+        android:id="@+id/item_exit"
+        android:title="Thoát"
+        android:icon="@drawable/baseline_arrow_back_24_black"
+        />
+</menu>

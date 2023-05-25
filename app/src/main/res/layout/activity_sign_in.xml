@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    tools:context=".viewmodels.SignIn">
+
+    <TextView
+        android:gravity="center"
+        android:text="Đăng nhập"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:hint="Nhập tên người dùng"
+        android:id="@+id/edittextuser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </EditText>
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:hint="Nhập mật khẩu"
+        android:id="@+id/edittextpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword">
+    </EditText>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tài khoản hoặc mật khẩu không chính xác"
+        android:textColor="#F60202"
+        android:layout_gravity="left"
+        android:id="@+id/text_view_error"
+        android:visibility="invisible"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginRight="30dp"
+            android:id="@+id/buttondangnhap"
+            android:text="ĐĂNG NHẬP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <Button
+            android:text="THOÁT"
+            android:id="@+id/buttonthoat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+    </LinearLayout>
+</LinearLayout>

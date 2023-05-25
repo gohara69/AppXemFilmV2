@@ -4,6 +4,7 @@ import com.example.appxemfilm.utils.CastApi;
 import com.example.appxemfilm.utils.Credentials;
 import com.example.appxemfilm.utils.GenreApi;
 import com.example.appxemfilm.utils.MovieApi;
+import com.example.appxemfilm.utils.RequestTokenApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,6 +23,8 @@ public class Servicey {
 
     public CastApi castApi = retrofit.create(CastApi.class);
 
+    public RequestTokenApi requestTokenApi = retrofit.create(RequestTokenApi.class);
+
     public MovieApi getMovieApi(){
         return movieApi;
     }
@@ -29,4 +32,8 @@ public class Servicey {
     public GenreApi getGenreApi() {return genreApi; }
 
     public CastApi getCastApi() {return castApi; }
+
+    public RequestTokenApi getRequestTokenApi() {
+        return requestTokenApi;
+    }
 }
