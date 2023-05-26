@@ -46,8 +46,21 @@ public class CastRecyclerView extends RecyclerView.Adapter<CastRecyclerView.Cast
     @Override
     public void onBindViewHolder(@NonNull CastHolder holder, int position) {
         CastModel cast = listCast.get(position);
-        holder.ten_dien_vien.setText(cast.getName());
-        holder.ten_vai_dien.setText(cast.getCharacter());
+        if(cast.getName().length() > 20){
+            holder.ten_dien_vien.setText(cast.getName().substring(0, 20) + "..");
+        } else {
+            holder.ten_dien_vien.setText(cast.getName());
+        }
+
+        if(cast.getCharacter() == null){
+            holder.ten_vai_dien.setText(cast.getKnown_for_department());
+        } else {
+            if(cast.getCharacter().length() > 20){
+                holder.ten_vai_dien.setText(cast.getCharacter().substring(0, 20) + "..");
+            } else {
+                holder.ten_vai_dien.setText(cast.getCharacter());
+            }
+        }
         Glide.with(context)
                 .load("https://image.tmdb.org/t/p/w500/" + cast.getProfile_path())
                 .into(holder.image_view_dien_vien);

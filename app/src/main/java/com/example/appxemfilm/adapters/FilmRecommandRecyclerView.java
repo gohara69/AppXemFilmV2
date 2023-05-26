@@ -1,13 +1,16 @@
 package com.example.appxemfilm.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 
@@ -100,11 +103,13 @@ public class FilmRecommandRecyclerView extends RecyclerView.Adapter<FilmRecomman
 
         ImageView imageView;
         TextView textView;
+        LinearLayoutCompat item_movie;
         public FilmRecommandHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.image_view_poster);
             textView = itemView.findViewById(R.id.text_view_ten_phim);
+            item_movie = itemView.findViewById(R.id.item_movie);
         }
     }
 }

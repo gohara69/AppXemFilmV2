@@ -12,7 +12,14 @@ public class CastResponse {
     @Expose()
     private List<CastModel> casts;
 
+    @SerializedName("results")
+    @Expose()
+    private List<CastModel> results;
+
     public List<CastModel> getCasts() {
         return casts;
+    }
+    public List<CastModel> getResults() {
+        return results;
     }
 }

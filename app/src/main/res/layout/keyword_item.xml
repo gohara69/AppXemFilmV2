@@ -15,5 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/text_view_keyword"
         android:textColor="#fff"
-        android:background="@drawable/custom_button"/>
+        android:background="@drawable/custom_button"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
 </androidx.cardview.widget.CardView>

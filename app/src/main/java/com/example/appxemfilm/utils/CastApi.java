@@ -40,4 +40,11 @@ public interface CastApi {
             @Query("api_key") String api_key,
             @Query("language") String language
     );
+
+    @GET("person/popular")
+    Call<CastResponse> getPopularCast(
+            @Query("api_key") String api_key,
+            @Query("language") String language,
+            @Query("page") int page
+    );
 }

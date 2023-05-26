@@ -114,7 +114,7 @@ public class MovieDetail extends AppCompatActivity {
             setDataToView();
             MovieModel movieModel = getIntent().getParcelableExtra("movie");
             int[] arrChuDe = movieModel.getGenre_ids();
-            ArrayList<ChuDe> chuDes = new ArrayList<>();
+            List<ChuDe> chuDes = new ArrayList<>();
             for(int i = 0 ; i < arrChuDe.length ; i++){
                 String sql = "Select name from CHUDE where id = " + arrChuDe[i];
                 Cursor c = database.rawQuery(sql, null);

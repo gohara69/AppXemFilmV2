@@ -66,4 +66,33 @@ public interface MovieApi {
             @Query("page") int pageNumber,
             @Query("language") String language
     );
+
+    @GET("movie/now_playing")
+    Call<MovieSearchResponse> getMovieOnScreen(
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("page") int pageNumber
+            );
+
+    @GET("trending/movie/day")
+    Call<MovieSearchResponse> getMovieOnTrend(
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("page") int pageNumber
+    );
+
+    @GET("movie/top_rated")
+    Call<MovieSearchResponse> getMovieTopRate(
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("page") int pageNumber
+    );
+
+    @GET("movie/popular")
+    Call<MovieSearchResponse> getMovieOnPopular(
+            @Query("api_key") String key,
+            @Query("language") String language,
+            @Query("page") int pageNumber,
+            @Query("region") String region
+    );
 }

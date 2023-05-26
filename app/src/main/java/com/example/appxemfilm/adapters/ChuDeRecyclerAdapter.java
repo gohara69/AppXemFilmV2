@@ -18,13 +18,14 @@ import com.example.appxemfilm.viewmodels.MovieDetail;
 import com.example.appxemfilm.viewmodels.MoviesByCategory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChuDeRecyclerAdapter extends RecyclerView.Adapter<ChuDeRecyclerAdapter.ChuDeViewHolder> {
 
     Context context;
-    ArrayList<ChuDe> listChuDe;
+    List<ChuDe> listChuDe;
 
-    public ChuDeRecyclerAdapter(Context context, ArrayList<ChuDe> listChuDe) {
+    public ChuDeRecyclerAdapter(Context context, List<ChuDe> listChuDe) {
         this.context = context;
         this.listChuDe = listChuDe;
     }

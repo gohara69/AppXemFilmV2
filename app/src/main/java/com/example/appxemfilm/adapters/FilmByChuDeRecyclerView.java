@@ -35,7 +35,7 @@ public class FilmByChuDeRecyclerView extends RecyclerView.Adapter<FilmByChuDeRec
     Context context;
     List<MovieModel> listMovie;
 
-    public FilmByChuDeRecyclerView(Context context, ArrayList<MovieModel> listMovie) {
+    public FilmByChuDeRecyclerView(Context context, List<MovieModel> listMovie) {
         this.context = context;
         this.listMovie = listMovie;
     }
