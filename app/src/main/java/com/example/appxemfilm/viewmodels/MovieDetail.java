@@ -54,7 +54,7 @@ public class MovieDetail extends AppCompatActivity {
     TextView text_view_ten_film, text_view_status, text_view_duriation, text_view_release_date;
     TextView text_view_budget, text_view_income, text_view_overview;
     RecyclerView recyclerViewChuDe, recyclerViewFilmImage, recyclerViewCastList, recycler_video_list;
-    RecyclerView recyclerKeyword, recycler_khuyen_nghi, recycler_tuong_tu;
+    RecyclerView recyclerKeyword, recycler_khuyen_nghi;
     Context context;
     int id;
     SQLiteDatabase database;
@@ -93,7 +93,6 @@ public class MovieDetail extends AppCompatActivity {
         recycler_video_list = findViewById(R.id.recycler_video_list);
         recyclerKeyword = findViewById(R.id.recycler_keyword);
         recycler_khuyen_nghi = findViewById(R.id.recycler_khuyen_nghi);
-        recycler_tuong_tu = findViewById(R.id.recycler_tuong_tu);
         context = this;
     }
 
@@ -134,7 +133,6 @@ public class MovieDetail extends AppCompatActivity {
             setDataToRecyclerViewListVideo(movieModel);
             getDataToRecyclerViewRecommendation(movieModel);
             getKeyWords(movieModel);
-            loadDataToRecyclerSimilar(movieModel);
         }
     }
 
@@ -283,32 +281,6 @@ public class MovieDetail extends AppCompatActivity {
                 recycler_khuyen_nghi.setAdapter(adapter);
                 LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
                 recycler_khuyen_nghi.setLayoutManager(horizontalLayoutManagaer);
-            }
-
-            @Override
-            public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    public void loadDataToRecyclerSimilar(MovieModel movieModel){
-        Servicey servicey = new Servicey();
-        MovieApi movieApi = servicey.getMovieApi();
-        Call<MovieSearchResponse> responseCall = movieApi.getSimilar(
-                movieModel.getMovie_id(),
-                Credentials.API_KEY,
-                1,
-                "vi-VN"
-        );
-        responseCall.enqueue(new Callback<MovieSearchResponse>() {
-            @Override
-            public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
-                List<MovieModel> movies = response.body().getMovies();
-                SimilarFilmsRecyclerView adapter = new SimilarFilmsRecyclerView(context, movies);
-                recycler_tuong_tu.setAdapter(adapter);
-                LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-                recycler_tuong_tu.setLayoutManager(horizontalLayoutManagaer);
             }
 
             @Override

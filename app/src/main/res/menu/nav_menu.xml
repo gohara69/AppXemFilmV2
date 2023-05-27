@@ -8,8 +8,8 @@
         android:icon="@drawable/baseline_home_24"/>
 
     <item
-        android:id="@+id/item_chu_de"
-        android:title="Chủ đề"
+        android:id="@+id/item_dang_chieu"
+        android:title="Phim đang chiếu"
         android:icon="@drawable/baseline_category_24"
         />
 
@@ -20,21 +20,9 @@
         />
 
     <item
-        android:id="@+id/item_near"
-        android:title="Phim sắp chiếu"
+        android:id="@+id/item_top_rate"
+        android:title="Phim top rate"
         android:icon="@drawable/baseline_upcoming_24"
-        />
-
-    <item
-        android:id="@+id/item_user"
-        android:title="Tài khoản"
-        android:icon="@drawable/baseline_account_circle_24"
-        />
-
-    <item
-        android:id="@+id/item_about_us"
-        android:title="Về chúng tôi"
-        android:icon="@drawable/baseline_info_24"
         />
 
     <item

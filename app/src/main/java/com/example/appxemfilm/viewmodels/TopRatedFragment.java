@@ -25,19 +25,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PhimHotFragment extends Fragment {
-
+public class TopRatedFragment extends Fragment {
     RecyclerView recyclerView;
-    public PhimHotFragment() {
+    public TopRatedFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_phim_hot, container, false);
+        View view = inflater.inflate(R.layout.fragment_top_rated, container, false);
         AnhXa(view);
-        getDataToRecyclerPhimHot();
+        getDataToTopRated();
         return view;
     }
 
@@ -45,14 +44,13 @@ public class PhimHotFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
     }
 
-    public void getDataToRecyclerPhimHot() {
+    public void getDataToTopRated(){
         Servicey servicey = new Servicey();
         MovieApi movieApi = servicey.getMovieApi();
-        Call<MovieSearchResponse> responseCall = movieApi.getMovieOnPopular(
+        Call<MovieSearchResponse> responseCall = movieApi.getMovieTopRate(
                 Credentials.API_KEY,
                 "vi-VN",
-                1,
-                "VN"
+                1
         );
         responseCall.enqueue(new Callback<MovieSearchResponse>() {
             @Override

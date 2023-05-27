@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.appxemfilm.R;
+import com.example.appxemfilm.databinding.ActivitySignInBinding;
 import com.example.appxemfilm.model.RequestToken;
 import com.example.appxemfilm.model.Session;
 import com.example.appxemfilm.request.Servicey;
@@ -31,12 +32,17 @@ public class SignIn extends AppCompatActivity {
     TextView text_view_error;
     RequestToken firstTimeToken;
     Context context;
+    ActivitySignInBinding signInBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        signInBinding = ActivitySignInBinding.inflate(getLayoutInflater());
+        setContentView(signInBinding.getRoot());
         Anhxa();
+
+        signInBinding.edittextuser.setText("");
+        signInBinding.edittextpassword.setText("");
         ControlButton();
     }
 

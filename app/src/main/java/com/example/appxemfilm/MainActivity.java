@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.content.Intent;
 
+import com.example.appxemfilm.adapters.FilmRecommandRecyclerView;
 import com.example.appxemfilm.adapters.MovieRecylerView;
 import com.example.appxemfilm.adapters.OnMovieListener;
 import com.example.appxemfilm.model.ChuDe;
@@ -134,10 +136,30 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                movieListViewModel.searchMovieApi(
+                Servicey servicey = new Servicey();
+                MovieApi movieApi = servicey.getMovieApi();
+                Call<MovieSearchResponse> responseCall = movieApi.searchMovie(
+                        Credentials.API_KEY,
                         query,
-                        1
+                        1,
+                        "vi-VN"
                 );
+                responseCall.enqueue(new Callback<MovieSearchResponse>() {
+                    @Override
+                    public void onResponse(Call<MovieSearchResponse> call, Response<MovieSearchResponse> response) {
+                        if (response.code() == 200) {
+                            List<MovieModel> movies = response.body().getMovies();
+                            FilmRecommandRecyclerView adapter = new FilmRecommandRecyclerView(MainActivity.this, movies);
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MovieSearchResponse> call, Throwable t) {
+
+                    }
+                });
                 return false;
             }
 

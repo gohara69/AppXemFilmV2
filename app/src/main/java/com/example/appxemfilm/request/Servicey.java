@@ -1,5 +1,6 @@
 package com.example.appxemfilm.request;
 
+import com.example.appxemfilm.utils.AccountApi;
 import com.example.appxemfilm.utils.CastApi;
 import com.example.appxemfilm.utils.Credentials;
 import com.example.appxemfilm.utils.GenreApi;
@@ -25,6 +26,8 @@ public class Servicey {
 
     public RequestTokenApi requestTokenApi = retrofit.create(RequestTokenApi.class);
 
+    public AccountApi accountApi = retrofit.create(AccountApi.class);
+
     public MovieApi getMovieApi(){
         return movieApi;
     }
@@ -36,4 +39,9 @@ public class Servicey {
     public RequestTokenApi getRequestTokenApi() {
         return requestTokenApi;
     }
+
+    public AccountApi getAccountApi() {
+        return accountApi;
+    }
+
 }

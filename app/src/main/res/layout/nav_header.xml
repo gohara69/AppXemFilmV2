@@ -26,13 +26,4 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:id="@+id/nav_header_name"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textColor="#000"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:id="@+id/nav_header_email"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
